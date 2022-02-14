@@ -9,7 +9,7 @@ module.exports = override(
     }),
     addLessLoader({
         modifyVars: {
-            "@primary-color": '#1D1F21',  // 更改主题颜色
+            "@primary-color": '#1D1F21',  // 更改主题颜色1
         },
         javascriptEnabled: true
     })
