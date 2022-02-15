@@ -1,6 +1,21 @@
 import React, { Component } from 'react'
 import { Table, Tag, Space, Card } from 'antd';
+import { getCategoriesAsync } from '../../../api/categories'
 export default class Categories extends Component {
+  state = {
+    data: []
+  }
+  componentDidMount() {
+    this.getList()
+  }
+  getList = async () => {
+    const res = await getCategoriesAsync({ paentId: 0 })
+    if (res.code) {
+      this.setState({
+        data: res.data.data
+      })
+    }
+  }
   render() {
     const columns = [
       {

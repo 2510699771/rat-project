@@ -27,7 +27,7 @@ class TheSideBar extends Component {
                 </SubMenu>
                 <SubMenu key="finances" icon={<NotificationOutlined />} title="信息统计">
                     <Menu.Item key="6">交易流水</Menu.Item>
-                    <Menu.Item key="7">销售业绩</Menu.Item>
+                    <Menu.Item key="73">销售业绩</Menu.Item>
                 </SubMenu>
             </Menu>
         )
