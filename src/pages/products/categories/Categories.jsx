@@ -1,20 +1,25 @@
 import React, { Component } from 'react'
 import { Table, Tag, Space, Card } from 'antd';
 import { getCategoriesAsync } from '../../../api/categories'
-export default class Categories extends Component {
+import { connect } from 'react-redux'
+import { getCategoriesAsyncAction } from '../../../redux/actions/categoriesActions.js'
+class Categories extends Component {
   state = {
     data: []
   }
   componentDidMount() {
     this.getList()
   }
-  getList = async () => {
-    const res = await getCategoriesAsync({ paentId: 0 })
-    if (res.code) {
-      this.setState({
-        data: res.data.data
-      })
-    }
+  getList = () => {
+    console.log(this.props)
+    this.props.dispatch({ type: 'ceshi' })
+    // this.props.dispatch(getCategoriesAsyncAction({ parentId: 0 }))
+    // const res = await getCategoriesAsync({ parentId: 0 })
+    // if (res.code) {
+    //   this.setState({
+    //     data: res.data.data
+    //   })
+    // }
   }
   render() {
     const columns = [
@@ -65,30 +70,7 @@ export default class Categories extends Component {
         ),
       },
     ];
-
-    const data = [
-      {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-      },
-      {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-      },
-      {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-      },
-    ];
+    const { data } = this.state
     return (
       <Card size="small" title="品类管理" extra={<a href="#">添加分类</a>} >
         <Table columns={columns} dataSource={data} />
@@ -97,3 +79,10 @@ export default class Categories extends Component {
     )
   }
 }
+const mapStateToProps = state => {
+  return {
+    state
+  }
+}
+
+export default connect(mapStateToProps)(Categories)
