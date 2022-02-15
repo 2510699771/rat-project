@@ -12,8 +12,7 @@ class Categories extends Component {
   }
   getList = () => {
     console.log(this.props)
-    this.props.dispatch({ type: 'ceshi' })
-    // this.props.dispatch(getCategoriesAsyncAction({ parentId: 0 }))
+    this.props.dispatch(getCategoriesAsyncAction({ parentId: 0 }))
     // const res = await getCategoriesAsync({ parentId: 0 })
     // if (res.code) {
     //   this.setState({
