@@ -4,6 +4,7 @@ import './index.css'
 import TheSideBar from '../../components/TheSideBar';
 import HomeRouter from '../../router/HomeRouter';
 import { Layout, Menu, Breadcrumb } from 'antd';
+import Breadcrumbs from '../../components/Breadcrumbs';
 const { Header, Content, Sider } = Layout;
 export default class Index extends Component {
   render() {
@@ -22,11 +23,7 @@ export default class Index extends Component {
             <TheSideBar></TheSideBar>
           </Sider>
           <Layout style={{ padding: '0 24px 24px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
+            <Breadcrumbs></Breadcrumbs>
             <Content
               className="site-layout-background"
               style={{

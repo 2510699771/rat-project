@@ -1,12 +1,15 @@
-import React, { Component } from 'react'
-import { Table, Tag, Space, Card } from 'antd';
+import React, { Component, createRef } from 'react'
+import { Table, Tag, Space, Card, Modal, Button } from 'antd';
 import { getCategoriesAsync } from '../../../api/categories'
 import { connect } from 'react-redux'
 import { getCategoriesAsyncAction } from '../../../redux/actions/categoriesActions.js'
+import AddCategories from './AddCategories';
 class Categories extends Component {
   state = {
-    data: []
+    data: [],
+    isModalVisible: true
   }
+  childRef = createRef()
   componentDidMount() {
     this.getList()
   }
@@ -19,6 +22,22 @@ class Categories extends Component {
     //     data: res.data.data
     //   })
     // }
+  }
+  showModal = () => {
+    this.setState({
+      isModalVisible: !this.state.isModalVisible
+    })
+  }
+  handleOk = () => {
+    this.setState({
+      isModalVisible: !this.state.isModalVisible
+    })
+    console.log('子组件ref', this.childRef);
+  }
+  handleCancel = () => {
+    this.setState({
+      isModalVisible: !this.state.isModalVisible
+    })
   }
   render() {
     const columns = [
@@ -69,11 +88,20 @@ class Categories extends Component {
         ),
       },
     ];
-    const { data } = this.state
+    const { data, isModalVisible } = this.state
     return (
-      <Card size="small" title="品类管理" extra={<a href="#">添加分类</a>} >
-        <Table columns={columns} dataSource={data} />
-      </Card>
+      <>
+        <Card size="small" title="品类管理" extra={<a href="#">添加分类</a>} >
+          <Table columns={columns} dataSource={data} />
+        </Card>
+        <Button type="primary" onClick={this.showModal}>
+          Open Modal
+        </Button>
+        <Modal title="新增分类" okText='确认' cancelText='取消' visible={isModalVisible} onOk={this.handleOk} onCancel={this.handleCancel}>
+          <AddCategories ref={this.childRef}></AddCategories>
+        </Modal>
+      </>
+
 
     )
   }
