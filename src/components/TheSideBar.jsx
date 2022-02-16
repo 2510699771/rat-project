@@ -9,7 +9,7 @@ class TheSideBar extends Component {
             <Menu
                 mode="inline"
                 defaultSelectedKeys={[this.props.history.location.pathname]}
-                defaultOpenKeys={['products','finances']}
+                defaultOpenKeys={['products', 'finances']}
                 style={{ height: '100%', borderRight: 0 }}
             >
                 <Menu.Item key="/home" icon={<HomeOutlined />}>
@@ -26,7 +26,7 @@ class TheSideBar extends Component {
                     <Menu.Item key="/products/list"><Link to='/products/list'>商品列表</Link></Menu.Item>
                 </SubMenu>
                 <SubMenu key="finances" icon={<NotificationOutlined />} title="信息统计">
-                    <Menu.Item key="6">交易流水</Menu.Item>
+                    <Menu.Item key="/list/finances"> <Link to='/list/finances'>交易流水</Link></Menu.Item>
                     <Menu.Item key="73">销售业绩</Menu.Item>
                 </SubMenu>
             </Menu>
